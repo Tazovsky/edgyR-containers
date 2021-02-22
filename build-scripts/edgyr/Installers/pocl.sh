@@ -2,6 +2,25 @@
 
 set -e
 
+echo "Installing build dependencies"
+sudo apt-get install -qqy --no-install-recommends \
+  clang-10 \
+  clang-format-10 \
+  clang-tidy-10 \
+  clang-tools-10 \
+  clinfo \
+  libclang-10-dev \
+  libclang-cpp10-dev \
+  libhwloc-dev \
+  liblttng-ust-dev \
+  llvm-10 \
+  llvm-10-dev \
+  llvm-10-runtime \
+  llvm-10-tools \
+  ocl-icd-dev \
+  ocl-icd-opencl-dev \
+  >> $EDGYR_LOGS/pocl.log 2>&1
+
 echo "Cloning POCL"
 mkdir --parents $HOME/src; cd $HOME/src
 rm -fr pocl*
