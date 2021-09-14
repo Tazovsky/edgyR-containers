@@ -1,5 +1,17 @@
 # edgyR-containers: Docker Images for NVIDIAⓇ Jetson™ R Developers
 
+## Update -- 2021-09-13
+Sadly, the time has come for me to abandon this project. I have given up waiting
+for CRAN to start distributing `r-base-dev` and RStudio to start
+distributing the open source version of RStudio Server in binary package form
+for Ubuntu 18.04 LTS on `aarch64`. I have more interesting and far less
+frustrating projects that I want to work on.
+
+I will be migrating some of this code to my AlgoCompSynth-One project at
+<https://github.com/AlgoCompSynth/AlgoCompSynth-One>. But RStudio Server will
+not be a part of it; I'll be using only existing binaries for `aarch64` from
+either NVIDIA or `conda-forge`, including JupyterLab.
+
 ## Update -- 2021-02-23
 I've finished the "de-enhancement" process and will be releasing
 v0.9.5 in the very near future. The biggest change is that I've removed some
