@@ -1,5 +1,5 @@
 FROM ubuntu:bionic
-LABEL maintainer="M. Edward (Ed) Borasky <znmeb@znmeb.net>"
+LABEL maintainer="Kamil Foltyński <kamil@foltynski.com"
 
 ARG DEBIAN_FRONTEND=noninteractive
 USER root
@@ -22,19 +22,19 @@ COPY ram_kilobytes.sh /usr/local/bin/
 # Pandoc
 ENV PANDOC_VERSION="2.13"
 COPY upstream-pandoc.sh $SCRIPTS/
-RUN $SCRIPTS/upstream-pandoc.sh > $LOGS/upstream-pandoc.log 2>&1
+RUN $SCRIPTS/upstream-pandoc.sh
 
 # R
-ENV R_VERSION_MAJOR=4 R_VERSION_MINOR=0 R_VERSION_PATCH=5
+ENV R_VERSION_MAJOR=4 R_VERSION_MINOR=1 R_VERSION_PATCH=2
 ENV R_LATEST=R-$R_VERSION_MAJOR.$R_VERSION_MINOR.$R_VERSION_PATCH
 COPY r-from-source.sh $SCRIPTS/
-RUN $SCRIPTS/r-from-source.sh > $LOGS/r-from-source.log 2>&1
+RUN $SCRIPTS/r-from-source.sh
 COPY configure.sh R.conf $SCRIPTS/
-RUN /usr/bin/time $SCRIPTS/configure.sh > $LOGS/configure.log 2>&1
+RUN /usr/bin/time $SCRIPTS/configure.sh
 
 # PGDG repository
 COPY pgdg.sh pgdg.list $SCRIPTS/
-RUN $SCRIPTS/pgdg.sh > $LOGS/pgdg.log 2>&1
+RUN $SCRIPTS/pgdg.sh
 
 # install RStudio Server
 # see https://rstudio.com/products/rstudio/download-server/other-platforms/
@@ -42,9 +42,8 @@ ENV RSTUDIO_VERSION_MAJOR=1 RSTUDIO_VERSION_MINOR=4 RSTUDIO_VERSION_PATCH=1106
 COPY rstudio.sh $SCRIPTS/
 COPY dependencies/linux $SCRIPTS/dependencies/linux
 COPY dependencies/common $SCRIPTS/dependencies/common
-RUN /usr/bin/time $SCRIPTS/rstudio.sh > $LOGS/rstudio.log 2>&1
+RUN /usr/bin/time $SCRIPTS/rstudio.sh
 
 COPY build-libnode-dev.sh cran-ubuntu-v8-bionic.list sources.list $SCRIPTS/
-RUN $SCRIPTS/build-libnode-dev.sh > $LOGS/build-libnode-dev.log 2>&1
+# RUN $SCRIPTS/build-libnode-dev.sh
 
-RUN ls -FlarRt /usr/local > $LOGS/after.log

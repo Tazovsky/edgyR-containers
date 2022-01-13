@@ -24,9 +24,9 @@ else
   do
     mkdir $package
     pushd $package
-    apt-get build-dep -y $package > $LOGS/$package.log 2>&1
-    apt-get source -y --compile $package >> $LOGS/$package.log 2>&1
-    apt-get install -qqy --no-install-recommends ./*.deb >> $LOGS/$package.log 2>&1
+    apt-get build-dep -y $package
+    apt-get source -y --compile $package
+    apt-get install -qqy --no-install-recommends ./*.deb
     cp ./*.deb $PACKAGES/
     popd
     rm -fr $package

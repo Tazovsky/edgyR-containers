@@ -22,3 +22,6 @@ echo $BASE_URL/$FILE
 curl -Ls $BASE_URL/$FILE \
   | tar --directory=/opt --extract --gunzip --file=-
 /opt/pandoc-$PANDOC_VERSION/bin/pandoc --version
+
+echo "Creating symlink for pandoc"
+ln -s /opt/pandoc-$PANDOC_VERSION/bin/pandoc /usr/local/bin/pandoc
